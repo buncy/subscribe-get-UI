@@ -115,6 +115,7 @@ export default function Subscribe() {
         <div className="w-14 h-4 relative">
           <Image
             src={"/gokwik-logo.png"}
+            priority={true}
             layout="fill"
             alt="goKwikLogo"
             quality={40}

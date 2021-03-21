@@ -14,6 +14,9 @@ module.exports = {
         "section-bg1": "#1c2632",
         "section-bg2": "#0D131C",
       },
+      padding: {
+        subscribe: "36rem",
+      },
     },
   },
   variants: {

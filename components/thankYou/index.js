@@ -20,7 +20,7 @@ export default function ThankYou() {
     },
   ];
   return (
-    <div className="flex flex-col pt-32 ">
+    <div className="flex flex-col lg:pt-48 pt-32  ">
       {data.map((item, index) => (
         <ThankyouBlock
           key={index}

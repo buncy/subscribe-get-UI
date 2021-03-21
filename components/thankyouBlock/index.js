@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 export default function ThankyouBlock({ src, string1, string2 }) {
   return (
-    <div className="flex w-full mt-5 px-6">
+    <div className="flex w-full  mt-5  px-6 lg:pl-subscribe">
       <div className="flex ">
         <div className="flex pb-2 items-end">
           <div className="h-10 w-10  relative">
