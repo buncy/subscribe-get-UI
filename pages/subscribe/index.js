@@ -1,40 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import ThankYou from "../../components/thankYou";
 
 export default function Subscribe() {
-  const thankyou = false;
   const [state, setstate] = useState({
     input: "",
     disabled: true,
+    thankyou: false,
   });
+  useEffect(() => {
+    const number = localStorage.getItem("userNumber");
+    if (number)
+      setstate((state) => ({
+        ...state,
+        thankyou: true,
+      }));
+  }, []);
   let hide = !state.disabled ? "hidden" : "block";
   const handleOnChange = (e) => {
     const validation = /^([0]|[\+19]{3})?([6-9][0-9]{9})$/;
-    setstate({
+    setstate((state) => ({
+      ...state,
       input: e.target.value,
       disabled: !validation.test(e.target.value),
-    });
+    }));
+  };
+  const handleSubmit = () => {
+    localStorage.setItem("userNumber", state.input);
+    setstate((state) => ({
+      ...state,
+      thankyou: true,
+    }));
   };
   console.log("state", state);
   let btn_bg = state.disabled ? "bg-btn-disabled" : "bg-btn-active shadow-lg";
   return (
     <div className="flex flex-col ">
       <section className="flex flex-col w-full lg:h-56 h-2/5 bg-gradient-to-r from-section-bg1 to-section-bg2">
-        {/* <div className="flex pt-10 justify-center">
-          <div className="h-14 w-40  relative">
-            <Image
-              src="/manMatters.png" // Route of the image file
-              // height={250} // Desired size with correct aspect ratio
-              // width={437} // Desired size with correct aspect ratio
-              priority={true}
-              quality={100}
-              layout="fill"
-              className=" "
-              alt="card"
-            />
-          </div>
-        </div> */}
         <div className="flex flex-col h-72 pt-8 relative items-center  ">
           <div className="h-14 w-40  relative">
             <Image
@@ -57,7 +59,7 @@ export default function Subscribe() {
             </p>
             <span>&#129395;</span>
           </div>
-          <div className=" h-56 w-11/12 absolute top-44 shadow-lg rounded-card ">
+          <div className=" h-56 w-11/12 lg:w-96 absolute top-44 lg:top-40 shadow-lg rounded-card ">
             <Image
               src="/card.png" // Route of the image file
               // height={250} // Desired size with correct aspect ratio
@@ -71,10 +73,10 @@ export default function Subscribe() {
           </div>
         </div>
       </section>
-      {thankyou ? (
+      {state.thankyou ? (
         <ThankYou />
       ) : (
-        <section className=" flex flex-col w-full pt-32 ">
+        <section className=" flex flex-col w-full pt-32 lg:pt-40 ">
           <div className="flex flex-col justify-center px-5 items-center ">
             <p className=" text-xl text-center w-96 py-3">
               {" "}
@@ -101,13 +103,14 @@ export default function Subscribe() {
           <div className="flex justify-center px-6 py-3 items-center  ">
             <button
               className={`${btn_bg} text-white font-medium  text-lg w-96 h-12 rounded-full`}
+              onClick={handleSubmit}
             >
               Wow!Get my Paytm Gift Card &gt;
             </button>
           </div>
         </section>
       )}
-      <footer className="flex justify-center pt-16 items-center">
+      <footer className="flex justify-center pt-16 lg:pt-10 items-center">
         <p className="pr-2">Powered by</p>
         <div className="w-14 h-4 relative">
           <Image
