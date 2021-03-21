@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ThankYou from "../../components/thankYou";
+import ThankYou from "../thankYou";
 
 export default function Subscribe() {
   const [state, setstate] = useState({
@@ -88,7 +88,7 @@ export default function Subscribe() {
               </strong>
             </p>
             <input
-              className="w-full  lg:w-96 h-12 mt-4 mb-3 text-center font-medium text-2xl placeholder-gray-300  rounded-full bg-input"
+              className="w-full  lg:w-96 h-12 mt-4 mb-3 text-center focus:outline-none font-medium text-2xl placeholder-gray-300  rounded-full bg-input"
               name="number"
               type="tel"
               pattern="^([0]|[\+19]{3})?([6-9][0-9]{9})$"
@@ -102,8 +102,9 @@ export default function Subscribe() {
           </div>
           <div className="flex justify-center px-6 py-3 items-center  ">
             <button
-              className={`${btn_bg} text-white font-medium  text-lg w-96 h-12 rounded-full`}
+              className={`${btn_bg} text-white font-medium focus:outline-none text-lg w-96 h-12 rounded-full`}
               onClick={handleSubmit}
+              disabled={state.disabled}
             >
               Wow!Get my Paytm Gift Card &gt;
             </button>
